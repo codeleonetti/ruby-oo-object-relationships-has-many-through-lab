@@ -19,20 +19,24 @@ class Patient
     end
 
     def new_appointment(date, doc)
-       # binding.pry
-     # Appointment = date.Doctor
-     appointment = date && doc
-
-
-        # need a date and doc with patient
+        Appointment.new(date, self, doc)
+        
     end
 
     def appointments
-
+        Appointment.all.map do |appt|
+            if appt.patient == self
+                appt
+            end
+        end
     end
 
     def doctors
-
+        Appointment.all.collect do |appt|
+            if appt.patient == self
+                appt.doctor
+            end
+        end
     end
 
 
